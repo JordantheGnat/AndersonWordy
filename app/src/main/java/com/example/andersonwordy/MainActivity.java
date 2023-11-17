@@ -12,6 +12,9 @@ import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     Button clearButton;
     String letter = "-";
     GridLayout mainGrid;
+    FirebaseDatabase database;
+    DatabaseReference myRef;
     int row = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
         clearButton = findViewById(R.id.clearButton);
         currWord = "Hello";
         setBlank();
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("message");
+
+        myRef.setValue("Hello, World!");
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
