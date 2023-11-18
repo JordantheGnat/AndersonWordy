@@ -23,10 +23,15 @@ public class Wordy extends AppCompatActivity {
         submitToFB = findViewById(R.id.firebaseButton);
         submission  =findViewById(R.id.submissionText);
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        // use likepusher.setValue("Butts");
         submitToFB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                DatabaseReference pusher = databaseReference.child("jordleWords").push();
+                String temp = submission.getText().toString();
+                pusher.setValue(temp);//this auto limits to five letters
+                //but if you put a 5 letter word into fb itself, it wouldn't be only 5
             }
         });
         backButton.setOnClickListener(new View.OnClickListener() {
