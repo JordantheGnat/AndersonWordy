@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                     temp.setText("");
                 }
                 row=0;
-
+                randomWord();
                 winner = findViewById(R.id.winTV);
                 winner.setBackgroundColor(Color.WHITE);
                 winner.setText("");
