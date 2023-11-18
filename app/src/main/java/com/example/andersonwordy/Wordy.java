@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -30,7 +31,12 @@ public class Wordy extends AppCompatActivity {
             public void onClick(View v) {
                 DatabaseReference pusher = databaseReference.child("jordleWords").push();
                 String temp = submission.getText().toString();
-                pusher.setValue(temp);//this auto limits to five letters
+                if(temp.length()!=5){
+                    Toast.makeText(getApplicationContext(),"Not 5 letters",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                Toast.makeText(getApplicationContext(),"Added to Firebase",Toast.LENGTH_LONG).show();
+                pusher.setValue(temp);//this auto limits to five letters, based on the xml
                 //but if you put a 5 letter word into fb itself, it wouldn't be only 5
             }
         });
